@@ -1,10 +1,11 @@
 # Battery Industry Genome™
 
-Live at **[batterygenome.net](https://batterygenome.net)**.
+Live at **[batterygenome.net](https://batterygenome.net)**. Edition 2026-09-28 (v1.23).
 
 16 domains · 170 application segments · ~$365B of 2025 battery demand, mapped by
 application, market size (audited, with ranges), an 8-axis requirement fingerprint,
-price band, ranked top-5 suppliers, and a reference cell design per segment.
+price band, ranked top-5 suppliers, and a reference cell design per segment,
+rendered in 3D and exportable as STL and DXF.
 One self-contained HTML file - no build, no dependencies.
 
 ## Structure
