@@ -1,0 +1,7 @@
+Battery Industry Genome (TM) - (c) 2026 Shashank Sripad. All rights reserved.
+
+The taxonomy, market estimates, requirement vectors, reference cell designs and
+all other content in this repository are proprietary. Viewing via
+https://batterygenome.net is permitted. Reproduction, redistribution, scraping,
+or use of the dataset in derivative works or commercial products without
+written permission is prohibited. Contact: x.com/ssripad1 · linkedin.com/in/ssripad
