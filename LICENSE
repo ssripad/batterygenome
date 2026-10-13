@@ -1,3 +1,35 @@
+Battery Industry Genome(TM) - License
+Copyright (c) 2026 Shashank Sripad
+
+This is the only license file for this repository. It covers two kinds of
+material, with different terms for each:
+
+1. SOFTWARE - GNU General Public License v3.0
+
+   The website code (the HTML, CSS and JavaScript in index.html, 404.html,
+   stocks/ and s/) and the scripts in scripts/ and .github/workflows/ are
+   free software: you can redistribute and/or modify them under the terms of
+   the GNU General Public License version 3, reproduced in full below. They
+   are distributed WITHOUT ANY WARRANTY; see the license for details.
+
+2. CONTENT AND DATA - All rights reserved
+
+   The taxonomy, market estimates, requirement vectors, reference cell
+   designs, supplier rankings, written text, images and all other data and
+   content in this repository (including the data embedded in the HTML files
+   and the files in data/) are proprietary and are NOT covered by the GPL.
+   Viewing via https://batterygenome.net is permitted. Reproduction,
+   redistribution, scraping, or use of this content or the dataset in
+   derivative works or commercial products without written permission is
+   prohibited.
+
+"Battery Industry Genome" is a trademark of Shashank Sripad. Neither part of
+this license grants any right to use the name or logo.
+
+Contact: x.com/ssripad1 · linkedin.com/in/ssripad
+
+================================================================================
+
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 

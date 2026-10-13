@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Companies · Battery Industry Genome™</title>
+<meta name="description" content="Listed companies across the battery value chain, ranked by market cap in USD, with the battery volume each company reports in GWh or MWh. Filter and sort by country.">
+<link rel="canonical" href="https://batterygenome.net/stocks/">
+<link rel="icon" type="image/png" href="https://batterygenome.net/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="https://batterygenome.net/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Battery Industry Genome™">
+<meta property="og:url" content="https://batterygenome.net/stocks/">
+<meta property="og:title" content="Battery Companies · Battery Industry Genome™">
+<meta property="og:description" content="Listed battery-industry companies by market cap and reported battery volume (GWh / MWh), sortable by country.">
+<meta property="og:image" content="https://batterygenome.net/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ssripad1">
+<meta name="twitter:title" content="Battery Companies · Battery Industry Genome™">
+<meta name="twitter:description" content="Listed battery-industry companies by market cap and reported battery volume (GWh / MWh), sortable by country.">
+<meta name="twitter:image" content="https://batterygenome.net/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#eff1ef; --sheet:#ffffff; --ink:#17211c; --ink-2:#4c5852; --ink-3:#8a938e;
+  --rule:#d3d8d4; --rule-soft:#e4e7e4; --verdigris:#2e7d6b; --verdigris-soft:#e3efeb; --focus:#1f5f52;
+  --down:#c9463d;
+  --colw:max(66.66vw, 340px);
+  --sans:'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{background:var(--paper);}
+body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:14px; line-height:1.55;}
+button,select,input{font:inherit; color:inherit;}
+:focus-visible{outline:2px solid var(--focus); outline-offset:2px;}
+a{color:inherit;}
+.wrap{width:var(--colw); max-width:100%; margin:0 auto; padding:0 26px;}
+header.mast{padding:30px 0 10px;}
+.brand{display:flex; align-items:center; gap:14px; text-decoration:none;}
+.logo{height:34px; width:auto; flex:none;}
+.brand .bn{font-weight:600; font-size:18px; letter-spacing:-0.005em;}
+.brand .bn sup{font-size:10px;}
+.back{display:inline-block; margin-top:14px; font-size:12.5px; color:var(--ink-2); text-decoration:none; border-bottom:1px solid var(--rule);}
+.back:hover{color:var(--verdigris); border-color:var(--verdigris);}
+h1{font-weight:600; font-size:30px; line-height:1.15; letter-spacing:-0.01em; margin-top:16px;}
+.lede{font-size:15px; color:var(--ink-2); margin-top:8px; max-width:72ch;}
+.stats{display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:12px; font-size:13px; color:var(--ink-2);}
+.stats strong{color:var(--ink); font-weight:600; font-size:16px;}
+.panel{margin:18px 0 60px; border:1px solid var(--ink); background:var(--sheet);}
+.controls{display:flex; flex-wrap:wrap; gap:10px 14px; align-items:center; padding:14px 16px; border-bottom:1px solid var(--rule);}
+.controls label{font-size:12px; color:var(--ink-3); display:flex; align-items:center; gap:7px;}
+.search{flex:1 1 220px; min-width:180px; border:1px solid var(--rule); background:var(--paper); padding:7px 10px; font-size:13px; border-radius:2px;}
+select{border:1px solid var(--rule); background:var(--paper); padding:6px 8px; font-size:13px; border-radius:2px; color:var(--ink); max-width:220px;}
+.chk{color:var(--ink-2) !important; font-size:13px !important;}
+.seg{display:inline-flex; border:1px solid var(--rule); border-radius:2px; overflow:hidden;}
+.seg button{background:var(--sheet); border:none; padding:6px 12px; font-size:12.5px; cursor:pointer; color:var(--ink-2);}
+.seg button + button{border-left:1px solid var(--rule);}
+.seg button[aria-pressed="true"]{background:var(--verdigris); color:#fff;}
+.meta-line{padding:8px 16px; font-size:12px; color:var(--ink-3); border-bottom:1px solid var(--rule-soft);}
+.tbl-wrap{overflow-x:auto;}
+table{width:100%; border-collapse:collapse; font-size:13px;}
+thead th{position:sticky; top:0; background:var(--sheet); text-align:left; font-weight:500; font-size:12px; color:var(--ink-3); border-bottom:1px solid var(--ink); padding:0; vertical-align:bottom; z-index:1;}
+thead th button{background:none; border:none; cursor:pointer; padding:9px 10px; width:100%; text-align:inherit; color:inherit; font-size:12px; font-weight:500;}
+thead th button:hover{color:var(--verdigris);}
+thead th[aria-sort="ascending"] button::after{content:' ▲'; font-size:9px;}
+thead th[aria-sort="descending"] button::after{content:' ▼'; font-size:9px;}
+thead th.r, td.r{text-align:right;}
+td{padding:7px 10px; border-bottom:1px solid var(--rule-soft); vertical-align:top;}
+tbody tr:hover td{background:var(--verdigris-soft);}
+td.rk{color:var(--ink-3); font-size:11.5px; width:36px;}
+.cn{font-weight:600;}
+td.co{min-width:110px;} td.vol{width:24%;}
+.sym{display:block; font-size:11px; color:var(--ink-3); text-decoration:none; white-space:nowrap;}
+.sym:hover{color:var(--verdigris); text-decoration:underline;}
+.grp{font-size:11.5px; color:var(--ink-2);}
+.ctry{width:1%;}
+.ctry .cc{display:inline-block; min-width:26px; font-size:10.5px; color:var(--sheet); background:var(--ink-2); border-radius:2px; padding:0 5px; text-align:center;}
+.ctry .nm{display:block; font-size:11.5px; color:var(--ink-2); line-height:1.3; margin-top:3px; white-space:nowrap;}
+.num{font-variant-numeric:tabular-nums; white-space:nowrap;}
+.mc{font-weight:600;}
+.chg.up{color:var(--verdigris);} .chg.dn{color:var(--down);} .chg.flat,.na{color:var(--ink-3);}
+.px{color:var(--ink-2); font-size:12px; display:block;}
+.vol b{font-weight:600;}
+.vol .vb{display:block; font-size:11px; color:var(--ink-3); white-space:normal; max-width:24ch; margin-left:auto;}
+.vol a{color:var(--ink-3);} .vol a:hover{color:var(--verdigris);}
+tr.cc-head td{background:var(--paper); border-top:1px solid var(--ink-3); border-bottom:1px solid var(--rule); font-size:12.5px; padding:9px 10px;}
+tr.cc-head:hover td{background:var(--paper);}
+tr.cc-head .cn{font-size:14px;}
+tr.cc-head .sub{color:var(--ink-2); margin-left:10px;}
+.empty{padding:22px 16px; color:var(--ink-3);}
+.notes{padding:14px 16px 16px; border-top:1px solid var(--rule); font-size:12px; color:var(--ink-2); display:grid; gap:6px; max-width:110ch;}
+.notes b{color:var(--ink); font-weight:600;}
+footer{padding:0 0 50px; font-size:12px; color:var(--ink-3);}
+@media (max-width: 1180px){ .wrap{padding:0 14px;} }
+@media (max-width: 1100px){ .ctry .nm{display:none;} }
+@media (max-width: 900px){ .col-g{display:none;} td,thead th button{padding-left:6px; padding-right:6px;} }
+@media (max-width: 700px){ h1{font-size:24px;} .col-g{display:none;} .ctry .nm{display:none;} table{font-size:12.5px;} td,thead th button{padding-left:7px; padding-right:7px;} .vol .vb{max-width:20ch;} }
+/* ---------- lightning-bolt cursor (v1.27): hotspot on the bolt's top tip ---------- */
+:root{--bolt:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2224%22 height=%2224%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M14.2 22.8 L4.2 10.4 H10.6 L8.2 1.2 L19.8 14.4 H13.2 Z%22 fill=%22%23f4c21b%22 stroke=%22%2317211c%22 stroke-width=%221.3%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E") 8 1, auto;}
+html, body{cursor:var(--bolt);}
+a, button, select, summary, label, [role=button], thead th button, .seg button{cursor:var(--bolt) !important;}
+input[type=search], input[type=text]{cursor:text;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="mast">
+  <a class="brand" href="../"><svg class="logo" viewBox="4 32 116 64" role="img" aria-label="Battery Industry Genome logo"><defs><clipPath id="lgc"><rect x="14" y="42" width="84" height="44" rx="5"/></clipPath></defs><g clip-path="url(#lgc)"><rect x="14" y="42" width="16" height="44" fill="#c99a2e"/><rect x="32" y="42" width="19" height="44" fill="#3a6fd8"/><rect x="53" y="42" width="14" height="44" fill="#159889"/><rect x="69" y="42" width="11" height="44" fill="#5f5bd6"/><rect x="82" y="42" width="8" height="44" fill="#b04fc4"/><rect x="92" y="42" width="6" height="44" fill="#5d6a64"/></g><rect x="8" y="36" width="96" height="56" rx="10" fill="none" stroke="#17211c" stroke-width="5"/><rect x="108" y="52" width="10" height="24" rx="4" fill="#17211c"/></svg><span class="bn">Battery Industry Genome<sup>™</sup></span></a>
+  <div><a class="back" href="../">← Back to the genome</a></div>
+  <h1>Battery companies</h1>
+  <p class="lede">This list shows the listed companies in the battery ticker. It ranks them by market cap in US dollars. It also gives the battery volume that each company reports, in GWh or MWh. Sort by any column, or filter by country and group.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<section class="panel" aria-label="Battery companies">
+  <div class="controls">
+    <input type="search" class="search" id="q" placeholder="Search companies or symbols…" aria-label="Search companies">
+    <label>Group <select id="grp" aria-label="Group"></select></label>
+    <label>Country <select id="ctry" aria-label="Country"></select></label>
+    <label class="chk"><input type="checkbox" id="volonly"> Reported volume only</label>
+    <div class="seg" role="group" aria-label="View">
+      <button type="button" id="v-list" aria-pressed="true">List</button>
+      <button type="button" id="v-cc" aria-pressed="false">By country</button>
+    </div>
+  </div>
+  <div class="meta-line" id="asof">Loading…</div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr>
+        <th class="r" style="width:36px"><span style="padding:9px 10px;display:block">#</span></th>
+        <th data-k="n"><button type="button">Company</button></th>
+        <th data-k="cc"><button type="button">Country</button></th>
+        <th data-k="g" class="col-g"><button type="button">Group</button></th>
+        <th data-k="mc" class="r"><button type="button">Market cap (USD)</button></th>
+        <th data-k="c" class="r"><button type="button">Price · day</button></th>
+        <th data-k="vol" class="r"><button type="button">Reported battery volume</button></th>
+      </tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <div class="notes">
+    <div><b>Market cap.</b> Shares outstanding × last price from Yahoo Finance, converted to US dollars at the latest exchange rate. It updates once a day. Quotes are delayed. This is not investment data.</div>
+    <div><b>Battery volume.</b> The latest full year that the company reported, in GWh or MWh. The basis word (sales, shipments, deployments or installations) is the company's own. A figure from a third party, for example SNE Research, shows its source. Volumes on different bases do not compare directly. A dash means that the company does not report a battery volume.</div>
+    <div><b>Coverage.</b> Only listed companies show. Country is the headquarters of the listed company.</div>
+  </div>
+</section>
+<footer id="foot"></footer>
+</div>
+
+<script>
+(function(){
+  const CN = {US:'United States',CN:'China',HK:'Hong Kong',TW:'Taiwan',KR:'South Korea',JP:'Japan',IN:'India',DE:'Germany',FR:'France',
+    UK:'United Kingdom',CH:'Switzerland',NL:'Netherlands',BE:'Belgium',SE:'Sweden',DK:'Denmark',ES:'Spain',IT:'Italy',IE:'Ireland',
+    AU:'Australia',CA:'Canada',CL:'Chile',BR:'Brazil',VN:'Vietnam',IL:'Israel',SG:'Singapore',NO:'Norway',FI:'Finland',AT:'Austria',AR:'Argentina'};
+  const cname = c => CN[c] || c || '–';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmtMC = v => v == null ? '–' : v >= 1e12 ? '$' + (v/1e12).toFixed(2) + 'T' : v >= 1e9 ? '$' + (v/1e9).toFixed(v >= 1e11 ? 0 : 1) + 'B' : '$' + Math.round(v/1e6) + 'M';
+  const fmtP = (p, cur) => {
+    const v = p >= 1000 ? Math.round(p).toLocaleString('en-US') : p >= 100 ? p.toFixed(1) : p >= 10 ? p.toFixed(2) : p.toFixed(cur === 'GBp' ? 1 : 3);
+    return v + (cur && cur !== 'USD' ? ' ' + cur : '');
+  };
+  const volGWh = v => v && typeof v.v === 'number' ? (v.u === 'MWh' ? v.v / 1000 : v.v) : null;
+  const fmtVol = v => {
+    if (!v || typeof v.v !== 'number') return '<span class="na">–</span>';
+    const n = v.v >= 100 ? Math.round(v.v).toLocaleString('en-US') : String(+v.v.toFixed(2));
+    const by = v.by && v.by !== 'company' ? ' · ' + esc(v.by) : '';
+    const src = v.url ? ' · <a href="' + esc(v.url) + '" target="_blank" rel="noopener" title="' + esc(v.src || 'source') + '">source</a>' : '';
+    return '<b>' + n + ' ' + esc(v.u) + '</b><span class="vb">' + esc(v.basis || '') + ' · ' + esc(v.y || '') + by + src + '</span>';
+  };
+
+  const el = id => document.getElementById(id);
+  const Q = new URLSearchParams(location.search);
+  const S = { q: Q.get('q') || '', g: Q.get('group') || '', cc: Q.get('country') || '', vol: Q.get('vol') === '1',
+              view: Q.get('view') === 'country' ? 'country' : 'list', k: Q.get('sort') || 'mc', dir: Q.get('dir') === 'asc' ? 1 : (Q.get('dir') === 'desc' ? -1 : null) };
+  const DEFDIR = {n:1, cc:1, g:1, mc:-1, c:-1, vol:-1};
+  if (S.dir === null) S.dir = DEFDIR[S.k] || -1;
+  let ROWS = [], GROUPS = [], PR = null;
+
+  function saveURL(){
+    const p = new URLSearchParams();
+    if (S.q) p.set('q', S.q); if (S.g) p.set('group', S.g); if (S.cc) p.set('country', S.cc); if (S.vol) p.set('vol', '1');
+    if (S.view === 'country') p.set('view', 'country');
+    if (S.k !== 'mc') p.set('sort', S.k); if (S.dir !== DEFDIR[S.k]) p.set('dir', S.dir > 0 ? 'asc' : 'desc');
+    const qs = p.toString(); history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+  }
+  function val(r, k){
+    if (k === 'n') return r.n.toLowerCase();
+    if (k === 'cc') return cname(r.cc).toLowerCase();
+    if (k === 'g') return GROUPS.indexOf(r.g);
+    if (k === 'mc') return r.mc;
+    if (k === 'c') return r.q && typeof r.q.c === 'number' ? r.q.c : null;
+    if (k === 'vol') return volGWh(r.v);
+  }
+  function cmp(a, b){
+    const va = val(a, S.k), vb = val(b, S.k);
+    if (va == null && vb == null) return (b.mc || 0) - (a.mc || 0);
+    if (va == null) return 1; if (vb == null) return -1;           // empty values always last
+    if (va < vb) return -S.dir; if (va > vb) return S.dir;
+    return (b.mc || 0) - (a.mc || 0);
+  }
+  function rowHTML(r, i){
+    const q = r.q, chg = q && typeof q.c === 'number' ? q.c : null;
+    const cls = chg === null ? 'na' : chg > 0.005 ? 'up' : chg < -0.005 ? 'dn' : 'flat';
+    return '<tr><td class="rk r">' + i + '</td>' +
+      '<td class="co"><span class="cn">' + esc(r.n) + '</span><a class="sym" href="https://finance.yahoo.com/quote/' + encodeURIComponent(r.s) + '" target="_blank" rel="noopener">' + esc(r.s) + '</a></td>' +
+      '<td class="ctry" title="' + esc(cname(r.cc)) + '"><span class="cc">' + esc(r.cc || '–') + '</span><span class="nm">' + esc(cname(r.cc)) + '</span></td>' +
+      '<td class="grp col-g">' + esc(r.g) + '</td>' +
+      '<td class="r num mc">' + fmtMC(r.mc) + '</td>' +
+      '<td class="r num">' + (q ? '<span class="chg ' + cls + '">' + (chg === null ? '–' : (chg > 0 ? '+' : '') + chg.toFixed(2) + '%') + '</span><span class="px">' + esc(fmtP(q.p, q.cur)) + '</span>' : '<span class="na">–</span>') + '</td>' +
+      '<td class="r vol">' + fmtVol(r.v) + '</td></tr>';
+  }
+  function render(){
+    const q = S.q.trim().toLowerCase();
+    const vis = ROWS.filter(r => (!S.g || r.g === S.g) && (!S.cc || r.cc === S.cc) && (!S.vol || volGWh(r.v) != null) &&
+      (!q || (r.n + ' ' + r.s + ' ' + cname(r.cc) + ' ' + r.g).toLowerCase().includes(q))).sort(cmp);
+    document.querySelectorAll('thead th[data-k]').forEach(th => th.setAttribute('aria-sort', th.dataset.k === S.k ? (S.dir > 0 ? 'ascending' : 'descending') : 'none'));
+    el('v-list').setAttribute('aria-pressed', S.view === 'list'); el('v-cc').setAttribute('aria-pressed', S.view === 'country');
+    let html = '';
+    if (!vis.length) html = '<tr><td colspan="7" class="empty">No company matches. Clear the search or a filter.</td></tr>';
+    else if (S.view === 'list') html = vis.map((r, i) => rowHTML(r, i + 1)).join('');
+    else {
+      const by = new Map();
+      vis.forEach(r => { if (!by.has(r.cc)) by.set(r.cc, []); by.get(r.cc).push(r); });
+      const groups = [...by.entries()].map(([cc, rs]) => ({cc, rs, mc: rs.reduce((s, r) => s + (r.mc || 0), 0), nv: rs.filter(r => volGWh(r.v) != null).length}));
+      groups.sort(S.k === 'cc' ? (a, b) => S.dir * cname(a.cc).localeCompare(cname(b.cc)) : (a, b) => b.mc - a.mc || cname(a.cc).localeCompare(cname(b.cc)));
+      groups.forEach(G => {
+        html += '<tr class="cc-head"><td colspan="7"><span class="cn">' + esc(cname(G.cc)) + '</span><span class="sub">' + G.rs.length + (G.rs.length === 1 ? ' company' : ' companies') +
+          (G.mc ? ' · ' + fmtMC(G.mc) + ' combined market cap' : '') + (G.nv ? ' · ' + G.nv + ' with a reported volume' : '') + '</span></td></tr>';
+        html += G.rs.map((r, i) => rowHTML(r, i + 1)).join('');
+      });
+    }
+    el('rows').innerHTML = html;
+    const tot = vis.reduce((s, r) => s + (r.mc || 0), 0);
+    const nC = new Set(vis.map(r => r.cc)).size;
+    el('stats').innerHTML = '<span><strong>' + vis.length + '</strong> ' + (vis.length === 1 ? 'company' : 'companies') + '</span><span><strong>' + nC + '</strong> ' + (nC === 1 ? 'country' : 'countries') + '</span>' +
+      (tot ? '<span><strong>' + fmtMC(tot) + '</strong> combined market cap</span>' : '') +
+      '<span><strong>' + vis.filter(r => volGWh(r.v) != null).length + '</strong> with a reported battery volume</span>';
+    saveURL();
+  }
+  function fillSelects(){
+    el('grp').innerHTML = '<option value="">All groups</option>' + GROUPS.map(g => '<option' + (g === S.g ? ' selected' : '') + '>' + esc(g) + '</option>').join('');
+    const counts = {}; ROWS.forEach(r => counts[r.cc] = (counts[r.cc] || 0) + 1);
+    const ccs = Object.keys(counts).sort((a, b) => cname(a).localeCompare(cname(b)));
+    el('ctry').innerHTML = '<option value="">All countries</option>' + ccs.map(c => '<option value="' + esc(c) + '"' + (c === S.cc ? ' selected' : '') + '>' + esc(cname(c)) + ' (' + counts[c] + ')</option>').join('');
+  }
+  function wire(){
+    el('q').value = S.q; el('volonly').checked = S.vol;
+    el('q').addEventListener('input', e => { S.q = e.target.value; render(); });
+    el('grp').addEventListener('change', e => { S.g = e.target.value; render(); });
+    el('ctry').addEventListener('change', e => { S.cc = e.target.value; render(); });
+    el('volonly').addEventListener('change', e => { S.vol = e.target.checked; render(); });
+    el('v-list').addEventListener('click', () => { S.view = 'list'; render(); });
+    el('v-cc').addEventListener('click', () => { S.view = 'country'; render(); });
+    document.querySelectorAll('thead th[data-k] button').forEach(b => b.addEventListener('click', () => {
+      const k = b.parentElement.dataset.k;
+      if (S.k === k) S.dir = -S.dir; else { S.k = k; S.dir = DEFDIR[k]; }
+      render();
+    }));
+  }
+
+  const bust = Math.floor(Date.now() / 600000);
+  Promise.all([
+    fetch('../index.html', {cache: 'no-cache'}).then(r => r.text()),
+    fetch('../data/prices.json?v=' + bust, {cache: 'no-store'}).then(r => r.ok ? r.json() : null).catch(() => null)
+  ]).then(([html, prices]) => {
+    const m = html.match(/<script type="application\/json" id="big-meta">([\s\S]*?)<\/script>/);
+    const META = JSON.parse(m[1]);
+    PR = prices && prices.items ? prices : null;
+    GROUPS = [...new Set(META.tickers.map(t => t.g))];
+    ROWS = META.tickers.map(t => { const q = PR && PR.items[t.s] || null; return Object.assign({}, t, {q, mc: q && typeof q.mc === 'number' ? q.mc : null}); });
+    if (S.g && !GROUPS.includes(S.g)) S.g = '';
+    fillSelects(); wire(); render();
+    const mcN = ROWS.filter(r => r.mc != null).length;
+    el('asof').textContent = PR ? ('Quotes as of ' + String(PR.updated).replace('T', ' ').replace('Z', ' UTC') +
+      (PR.mc_updated ? ' · market caps as of ' + String(PR.mc_updated).replace('T', ' ').replace('Z', ' UTC') + ' (' + mcN + ' companies)' : ' · market caps load after the next price update')) +
+      ' · delayed, not investment data' : 'Quotes load after the next price update.';
+    el('foot').textContent = (META.copyright ? META.copyright + ' - ' : '') + META.name + ' v' + META.version + '.';
+  }).catch(err => { el('asof').textContent = 'The company list did not load. Reload the page.'; console.error(err); });
+})();
+</script>
+</body>
+</html>

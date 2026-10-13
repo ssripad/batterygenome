@@ -1,0 +1,30 @@
+name: Ticker prices
+on:
+  schedule:
+    - cron: "20 1,7,10,14,16,18,20,22 * * 1-5"   # UTC: Asia close, Europe, US open-to-close, weekdays
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: prices
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install yfinance
+      - name: Pull quotes
+        env:
+          FORCE_MC: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}   # manual runs refresh market caps too
+        run: python scripts/prices.py
+      - name: Commit if changed
+        run: |
+          git config user.name "genome-bot"
+          git config user.email "genome-bot@users.noreply.github.com"
+          git add data/prices.json
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "prices: $(date -u +%Y-%m-%dT%H:%MZ) [skip ci]"
+          git push
